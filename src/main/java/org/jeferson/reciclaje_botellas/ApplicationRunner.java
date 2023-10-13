@@ -4,17 +4,22 @@ import org.jeferson.reciclaje_botellas.domain.repository.RecyclerCustomerReposit
 import org.jeferson.reciclaje_botellas.domain.service.EstadisticasService;
 import org.jeferson.reciclaje_botellas.domain.service.EstadisticasServiceImpl;
 
-import java.text.MessageFormat;
-
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
 // then press Enter. You can now see whitespace characters in your code.
 public class ApplicationRunner {
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-        EstadisticasService estadisticasService=new
-                EstadisticasServiceImpl(new RecyclerCustomerRepositoryImpl());
+    EstadisticasService estadisticasService =
+        new EstadisticasServiceImpl(new RecyclerCustomerRepositoryImpl());
 
-        String idSearching="123";
-        System.out.println("El usuario se con : {id} se encuentra  registrado " + estadisticasService.searchId( idSearching));
-    }
+    String idSearching = "123";
+    System.out.println(
+        "¿El usuario  con : {id} se encuentra  registrado? "
+            + estadisticasService.searchId(idSearching));
+
+    System.out.println("Numero de mujeres " + estadisticasService.countCustomersByGender('F'));
+    System.out.println(
+        "Numero de mujeres que reciclan "
+            + estadisticasService.countCustomersByGenderAndRecycle('F', true));
+  }
 }
