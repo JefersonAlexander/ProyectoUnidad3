@@ -34,4 +34,17 @@ class RecyclerCustomerImplTest {
     int numberWomenRecycling = recyclerCustomer.countCustomersByGenderAndRecycle('F', true);
     assertEquals(numberWomenRecycling, 6);
   }
+
+  @Test
+  void counting_the_person_young_by_recycling_successfully() {
+    int youngRecycler = recyclerCustomer.YoungEcological();
+    assertEquals(2,youngRecycler);
+  }
+
+  @Test
+  void find_the_person_who_recycles_the_most() {
+    String ecological = recyclerCustomer.MostEcological();
+    assertEquals("Estafania Gonzales",ecological);
+  }
+
 }

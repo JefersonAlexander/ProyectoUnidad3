@@ -21,5 +21,7 @@ public class ApplicationRunner {
     System.out.println(
         "Numero de mujeres que reciclan "
             + estadisticasService.countCustomersByGenderAndRecycle('F', true));
+    System.out.println("Quien reciclo mas botellas fue :  " + estadisticasService.MostEcological() );
+    System.out.println("La cantidad de personas jovenes que reciclan es :  " + estadisticasService.YoungEcological() );
   }
 }

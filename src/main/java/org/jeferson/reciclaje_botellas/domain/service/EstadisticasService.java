@@ -7,4 +7,8 @@ public interface EstadisticasService {
   int countCustomersByGender(char gender);
 
   int countCustomersByGenderAndRecycle(char gender, boolean recycle);
+
+  int YoungEcological();
+
+  String MostEcological();
 }

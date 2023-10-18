@@ -49,4 +49,38 @@ public class EstadisticasServiceImpl implements EstadisticasService {
                     CustomerInformation.gender() == gender && CustomerInformation.recycle())
             .count();
   }
+
+  @Override
+  public int YoungEcological() {
+    int youngRecyclers = 0;
+
+    for (RecyclerCustomer customer : customerInformationsList) {
+      int age = customer.age();
+      boolean isRecycling = customer.recycle();
+
+      if (age >= 18 && age <= 27 && isRecycling) {
+        youngRecyclers++;
+      }
+    }
+    return youngRecyclers;
+
+  }
+
+  @Override
+  public String MostEcological() {
+    String nameCustomer = "";
+    String surCustomer = "";
+    int maxBottles = 0; // Inicializamos con 0, ya que no podemos tener un número de botellas negativo.
+
+    for (RecyclerCustomer customer : customerInformationsList) {
+      if (customer.numberBottles() > maxBottles) {
+        maxBottles = customer.numberBottles();
+        nameCustomer = customer.name();
+        surCustomer = customer.surname();
+      }
+    }
+
+    return nameCustomer +  " "  + surCustomer;
+  }
+
 }
