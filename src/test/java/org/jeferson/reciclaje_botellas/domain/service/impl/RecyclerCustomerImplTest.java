@@ -3,48 +3,53 @@ package org.jeferson.reciclaje_botellas.domain.service.impl;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.jeferson.reciclaje_botellas.domain.repository.RecyclerCustomerRepositoryImpl;
-import org.jeferson.reciclaje_botellas.domain.service.EstadisticasService;
-import org.jeferson.reciclaje_botellas.domain.service.EstadisticasServiceImpl;
+import org.jeferson.reciclaje_botellas.domain.service.EstadisticaCustomer;
+import org.jeferson.reciclaje_botellas.domain.service.EstadisticasCustomerImpl;
 import org.junit.jupiter.api.Test;
 
 class RecyclerCustomerImplTest {
-  private EstadisticasService recyclerCustomer =
-      new EstadisticasServiceImpl(new RecyclerCustomerRepositoryImpl());
+  private EstadisticaCustomer recyclerCustomer =
+      new EstadisticasCustomerImpl(new RecyclerCustomerRepositoryImpl());
 
   @Test
   void searching_for_costumer_by_id_when_client_exists() {
-    boolean id = recyclerCustomer.searchId("182");
+    /*El cliente con id 182 se encuentra en la lista*/
+    boolean id = recyclerCustomer.idSearching("182");
     assertTrue(id);
   }
 
   @Test
   void searching_for_costumer_by_id_when_client_no_exists() {
-    boolean id = recyclerCustomer.searchId("18");
+    /*El cliente con id 18 no existe en los datos*/
+    boolean id = recyclerCustomer.idSearching("18");
     assertFalse(id);
   }
 
   @Test
   void counting_the_number_of_women_successfully() {
-    int numberWomen = recyclerCustomer.countCustomersByGender('F');
-    assertEquals(numberWomen, 11);
+    /*Son 11 mujeres en los datos*/
+    int numberWomen = recyclerCustomer.countByGender('F');
+    assertEquals(11, numberWomen);
   }
 
   @Test
   void counting_the_number_of_women_by_recycling_successfully() {
-    int numberWomenRecycling = recyclerCustomer.countCustomersByGenderAndRecycle('F', true);
-    assertEquals(numberWomenRecycling, 6);
+    // La cantidad de mujeres que reciclan son 6
+    int numberWomenRecycling = recyclerCustomer.countGenderAndRecycle('F', true);
+    assertEquals(6, numberWomenRecycling);
   }
 
   @Test
   void counting_the_person_young_by_recycling_successfully() {
-    int youngRecycler = recyclerCustomer.YoungEcological();
-    assertEquals(2,youngRecycler);
+    // Hay dos personas que reciclan entre 18 y 27 años
+    int youngRecycler = recyclerCustomer.youngRecycler();
+    assertEquals(2, youngRecycler);
   }
 
   @Test
   void find_the_person_who_recycles_the_most() {
-    String ecological = recyclerCustomer.MostEcological();
-    assertEquals("Estafania Gonzales",ecological);
+    // La personaque mas recicla es Estafania Gonzales
+    StringBuilder ecological = recyclerCustomer.mostRecycler();
+    assertEquals("Estafania Gonzales", ecological.toString());
   }
-
 }

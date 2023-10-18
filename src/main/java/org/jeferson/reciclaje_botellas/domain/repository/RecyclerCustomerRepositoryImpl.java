@@ -20,15 +20,7 @@ public class RecyclerCustomerRepositoryImpl implements RecyclerCustomerRepositor
                 true,
                 13,
                 LocalDate.parse("15/03/2021", formatter)),
-            new RecyclerCustomer(
-                "Marti",
-                "Alvares",
-                32,
-                'M',
-                "273",
-                true,
-                28,
-                LocalDate.parse("07/09/2020", formatter)),
+            new RecyclerCustomer("Marti", "Alvares", 32, 'M', "273", false, 0, null),
             new RecyclerCustomer("Juana", "Martines", 45, 'F', "364", false, 0, null),
             new RecyclerCustomer(
                 "Estafania",
