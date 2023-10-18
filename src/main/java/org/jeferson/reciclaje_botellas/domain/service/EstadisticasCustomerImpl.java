@@ -18,9 +18,9 @@ public class EstadisticasCustomerImpl implements EstadisticaCustomer {
 
   // Metodos
   @Override
-  // Este metodo se encarga de buscar por Id si una persona esta en la lista de datos
+  // This method is responsible for searching by ID if a customer is in the data list
   public boolean idSearching(String idSearching) {
-    logger.info("Buscando un cliente por id");
+    logger.info("Searching for a customer by id");
     boolean result = false;
     for (RecyclerCustomer customer : customerInformationsList) {
       if (customer.id().equals(idSearching)) {
@@ -32,31 +32,31 @@ public class EstadisticasCustomerImpl implements EstadisticaCustomer {
   }
 
   @Override
-  // Este método cuenta la cantidad de clientes por género.
+  // This method counts the number of customers by gender.
   public int countByGender(char gender) {
-    logger.info("Contando clientes por genero");
+    logger.info("Counting customers by gender");
     long count =
         customerInformationsList.stream()
-            .filter(customer -> customer.gender() == gender) // Filtra los clientes por género
+            .filter(customer -> customer.gender() == gender) // Filter customer by gender
             .count();
     return (int) count;
   }
 
   @Override
-  // Este método cuenta la cantidad de clientes por género que reciclan
+  // This method counts the number of customers by gender who recycle.
   public int countGenderAndRecycle(char gender, boolean recycle) {
-    logger.info("Contando clientes que reciclan por genero");
+    logger.info("Counting customers who recycle by gender");
     long count =
-        customerInformationsList.stream()
+        customerInformationsList.stream() // Filter customer by gender and recycler
             .filter(customer -> customer.gender() == gender && customer.recycle())
             .count();
     return (int) count;
   }
 
   @Override
-  // Este metodo cuenta la cantidad de clientes que recicla entre 18 y 27 años
+  // This method counts the number of customers who recycle between 18 and 27 years old.
   public int youngRecycler() {
-    logger.info("Contar la cantidad de clientes entre 18 y 27 años");
+    logger.info("Count the number of clients between 18 and 27 years old");
     int youngRecyclers = 0;
     for (RecyclerCustomer customer : customerInformationsList) {
       if (customer.age() >= 18 && customer.age() <= 27 && customer.recycle()) {
@@ -67,9 +67,9 @@ public class EstadisticasCustomerImpl implements EstadisticaCustomer {
   }
 
   @Override
-  // Este metodo se encarga de encontrar el cliente que mas ha reciclado
+  // This method is responsible for finding the customer who has recycled the most
   public StringBuilder mostRecycler() {
-    logger.info("Encontrando la persona que mas recicla");
+    logger.info("Finding the customer who recycles the most");
     StringBuilder personalInformation = new StringBuilder();
     String nameCustomer = "";
     String surnameCustomer = "";

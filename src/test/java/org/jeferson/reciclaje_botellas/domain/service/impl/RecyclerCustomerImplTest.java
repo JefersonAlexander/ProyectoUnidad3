@@ -48,7 +48,7 @@ class RecyclerCustomerImplTest {
 
   @Test
   void find_the_person_who_recycles_the_most() {
-    // La personaque mas recicla es Estafania Gonzales
+    // La persona que mas recicla es Estafania Gonzales
     StringBuilder ecological = recyclerCustomer.mostRecycler();
     assertEquals("Estafania Gonzales", ecological.toString());
   }
