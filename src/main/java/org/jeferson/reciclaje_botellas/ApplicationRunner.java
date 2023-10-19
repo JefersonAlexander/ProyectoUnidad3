@@ -15,26 +15,31 @@ public class ApplicationRunner {
 
     System.out.println(
         MessageFormat.format(
-            "The customer is registered: {0} ", estadisticaService.idSearching("123")));
+            "The customer is registered: {0} ", estadisticaService.searchingId("123")));
+
     System.out.println(
         MessageFormat.format("Number of women: {0}", estadisticaService.countByGender('F')));
 
     System.out.println(
         MessageFormat.format("Number of men: {0} ", estadisticaService.countByGender('M')));
+
     System.out.println(
         MessageFormat.format(
             "Number of women who recycle: {0} ",
             estadisticaService.countGenderAndRecycle('F', true)));
+
     System.out.println(
         MessageFormat.format(
             "Number of men who recycle: {0} ",
             estadisticaService.countGenderAndRecycle('M', true)));
+
     System.out.println(
         MessageFormat.format(
-            "Who recycles the bottles was: {0}  ", estadisticaService.mostRecycler()));
+            "Who recycles the bottles was: {0}  ", estadisticaService.findingMostRecycler()));
+
     System.out.println(
         MessageFormat.format(
             "The number of young people who recycle is: {0}  ",
-            estadisticaService.youngRecycler()));
+            estadisticaService.countYoungRecycler()));
   }
 }

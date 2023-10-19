@@ -14,14 +14,14 @@ class RecyclerCustomerImplTest {
   @Test
   void searching_for_costumer_by_id_when_client_exists() {
     /*El cliente con id 182 se encuentra en la lista*/
-    boolean id = recyclerCustomer.idSearching("182");
+    boolean id = recyclerCustomer.searchingId("182");
     assertTrue(id);
   }
 
   @Test
   void searching_for_costumer_by_id_when_client_no_exists() {
     /*El cliente con id 18 no existe en los datos*/
-    boolean id = recyclerCustomer.idSearching("18");
+    boolean id = recyclerCustomer.searchingId("18");
     assertFalse(id);
   }
 
@@ -42,14 +42,14 @@ class RecyclerCustomerImplTest {
   @Test
   void counting_the_person_young_by_recycling_successfully() {
     // Hay dos personas que reciclan entre 18 y 27 años
-    int youngRecycler = recyclerCustomer.youngRecycler();
+    int youngRecycler = recyclerCustomer.countYoungRecycler();
     assertEquals(2, youngRecycler);
   }
 
   @Test
   void find_the_person_who_recycles_the_most() {
     // La persona que mas recicla es Estafania Gonzales
-    StringBuilder ecological = recyclerCustomer.mostRecycler();
+    StringBuilder ecological = recyclerCustomer.findingMostRecycler();
     assertEquals("Estafania Gonzales", ecological.toString());
   }
 }

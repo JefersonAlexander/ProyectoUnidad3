@@ -19,7 +19,7 @@ public class EstadisticasCustomerImpl implements EstadisticaCustomer {
   // Metodos
   @Override
   // This method is responsible for searching by ID if a customer is in the data list
-  public boolean idSearching(String idSearching) {
+  public boolean searchingId(String idSearching) {
     logger.info("Searching for a customer by id");
     boolean result = false;
     for (RecyclerCustomer customer : customerInformationsList) {
@@ -35,7 +35,7 @@ public class EstadisticasCustomerImpl implements EstadisticaCustomer {
   // This method counts the number of customers by gender.
   public int countByGender(char gender) {
     logger.info("Counting customers by gender");
-    long count =
+    var count =
         customerInformationsList.stream()
             .filter(customer -> customer.gender() == gender) // Filter customer by gender
             .count();
@@ -46,7 +46,7 @@ public class EstadisticasCustomerImpl implements EstadisticaCustomer {
   // This method counts the number of customers by gender who recycle.
   public int countGenderAndRecycle(char gender, boolean recycle) {
     logger.info("Counting customers who recycle by gender");
-    long count =
+    var count =
         customerInformationsList.stream() // Filter customer by gender and recycler
             .filter(customer -> customer.gender() == gender && customer.recycle())
             .count();
@@ -55,7 +55,7 @@ public class EstadisticasCustomerImpl implements EstadisticaCustomer {
 
   @Override
   // This method counts the number of customers who recycle between 18 and 27 years old.
-  public int youngRecycler() {
+  public int countYoungRecycler() {
     logger.info("Count the number of clients between 18 and 27 years old");
     int youngRecyclers = 0;
     for (RecyclerCustomer customer : customerInformationsList) {
@@ -68,21 +68,21 @@ public class EstadisticasCustomerImpl implements EstadisticaCustomer {
 
   @Override
   // This method is responsible for finding the customer who has recycled the most
-  public StringBuilder mostRecycler() {
+  public StringBuilder findingMostRecycler() {
     logger.info("Finding the customer who recycles the most");
-    StringBuilder personalInformation = new StringBuilder();
-    String nameCustomer = "";
-    String surnameCustomer = "";
+    StringBuilder fullName = new StringBuilder();
+    String name = "";
+    String surname = "";
     int maxBottles = 0;
     for (RecyclerCustomer customer : customerInformationsList) {
       if (customer.numberBottles() > maxBottles) {
         maxBottles = customer.numberBottles();
-        nameCustomer = customer.name();
-        surnameCustomer = customer.surname();
+        name = customer.name();
+        surname = customer.surname();
       }
     }
-    personalInformation.append(nameCustomer).append(" ").append(surnameCustomer);
+    fullName.append(name).append(" ").append(surname);
 
-    return personalInformation;
+    return fullName;
   }
 }
