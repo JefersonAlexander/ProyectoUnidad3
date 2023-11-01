@@ -5,5 +5,7 @@ import org.jeferson.reciclaje_botellas.domain.model.RecyclerCustomer;
 
 public interface RecyclerCustomerRepository {
 
-  List<RecyclerCustomer> listarCustomerInformation();
+  List<RecyclerCustomer> findAllRecyclerCustomer();
+
+  RecyclerCustomer addRecyclerCustomer(RecyclerCustomer newRecycler);
 }

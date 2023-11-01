@@ -3,13 +3,13 @@ package org.jeferson.reciclaje_botellas.domain.service.impl;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.jeferson.reciclaje_botellas.domain.repository.RecyclerCustomerRepositoryImpl;
-import org.jeferson.reciclaje_botellas.domain.service.EstadisticaCustomer;
-import org.jeferson.reciclaje_botellas.domain.service.EstadisticasCustomerImpl;
+import org.jeferson.reciclaje_botellas.domain.service.StatisticsCustomer;
+import org.jeferson.reciclaje_botellas.domain.service.StatisticsCustomerImpl;
 import org.junit.jupiter.api.Test;
 
 class RecyclerCustomerImplTest {
-  private EstadisticaCustomer recyclerCustomer =
-      new EstadisticasCustomerImpl(new RecyclerCustomerRepositoryImpl());
+  private StatisticsCustomer recyclerCustomer =
+      new StatisticsCustomerImpl(new RecyclerCustomerRepositoryImpl());
 
   @Test
   void searching_for_costumer_by_id_when_client_exists() {
@@ -42,7 +42,7 @@ class RecyclerCustomerImplTest {
   @Test
   void counting_the_person_young_by_recycling_successfully() {
     // Hay dos personas que reciclan entre 18 y 27 años
-    int youngRecycler = recyclerCustomer.countYoungRecycler();
+    int youngRecycler = recyclerCustomer.countRecyclerByAges(18, 27);
     assertEquals(2, youngRecycler);
   }
 

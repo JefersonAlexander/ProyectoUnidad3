@@ -1,45 +1,56 @@
 package org.jeferson.reciclaje_botellas;
 
 import java.text.MessageFormat;
+import java.time.LocalDate;
+import java.util.List;
+import org.jeferson.reciclaje_botellas.domain.model.RecyclerCustomer;
 import org.jeferson.reciclaje_botellas.domain.repository.RecyclerCustomerRepositoryImpl;
-import org.jeferson.reciclaje_botellas.domain.service.EstadisticaCustomer;
-import org.jeferson.reciclaje_botellas.domain.service.EstadisticasCustomerImpl;
+import org.jeferson.reciclaje_botellas.domain.service.StatisticsCustomer;
+import org.jeferson.reciclaje_botellas.domain.service.StatisticsCustomerImpl;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class ApplicationRunner {
   public static void main(String[] args) {
 
-    EstadisticaCustomer estadisticaService =
-        new EstadisticasCustomerImpl(new RecyclerCustomerRepositoryImpl());
+    StatisticsCustomer statisticsService =
+        new StatisticsCustomerImpl(new RecyclerCustomerRepositoryImpl());
 
     System.out.println(
         MessageFormat.format(
-            "The customer is registered: {0} ", estadisticaService.searchingId("123")));
+            "The customer is registered: {0} ", statisticsService.searchingId("123")));
 
     System.out.println(
-        MessageFormat.format("Number of women: {0}", estadisticaService.countByGender('F')));
+        MessageFormat.format("Number of women: {0}", statisticsService.countByGender('F')));
 
     System.out.println(
-        MessageFormat.format("Number of men: {0} ", estadisticaService.countByGender('M')));
+        MessageFormat.format("Number of men: {0} ", statisticsService.countByGender('M')));
 
     System.out.println(
         MessageFormat.format(
             "Number of women who recycle: {0} ",
-            estadisticaService.countGenderAndRecycle('F', true)));
+                statisticsService.countGenderAndRecycle('F', true)));
 
     System.out.println(
         MessageFormat.format(
             "Number of men who recycle: {0} ",
-            estadisticaService.countGenderAndRecycle('M', true)));
+                statisticsService.countGenderAndRecycle('M', true)));
 
     System.out.println(
         MessageFormat.format(
-            "Who recycles the bottles was: {0}  ", estadisticaService.findingMostRecycler()));
+            "Who recycles the bottles was: {0}  ", statisticsService.findingMostRecycler()));
 
     System.out.println(
         MessageFormat.format(
             "The number of young people who recycle is: {0}  ",
-            estadisticaService.countYoungRecycler()));
+                statisticsService.countRecyclerByAges(18, 27)));
+
+    statisticsService.addRecyclerCustomer(
+        new RecyclerCustomer("Laiza", "Delgado", 24, 'F', "888", true, 3, LocalDate.now()));
+    System.out.println("Showing information after adding a new customer");
+    mostrarNotas(statisticsService);
+  }
+
+  private static void mostrarNotas(StatisticsCustomer estadisticaCustomer) {
+    List<RecyclerCustomer> gradeList = estadisticaCustomer.listAllCustomers();
+    gradeList.forEach(System.out::println);
   }
 }

@@ -6,64 +6,57 @@ import org.jeferson.reciclaje_botellas.domain.repository.RecyclerCustomerReposit
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EstadisticasCustomerImpl implements EstadisticaCustomer {
-  private static final Logger logger = LoggerFactory.getLogger(EstadisticasCustomerImpl.class);
+public class StatisticsCustomerImpl implements StatisticsCustomer {
+  private static final Logger logger = LoggerFactory.getLogger(StatisticsCustomerImpl.class);
   private final RecyclerCustomerRepository recyclerCustomerRepository;
   private List<RecyclerCustomer> customerInformationsList;
 
-  public EstadisticasCustomerImpl(RecyclerCustomerRepository recyclerCustomerRepository) {
+  public StatisticsCustomerImpl(RecyclerCustomerRepository recyclerCustomerRepository) {
     this.recyclerCustomerRepository = recyclerCustomerRepository;
-    this.customerInformationsList = this.recyclerCustomerRepository.listarCustomerInformation();
+    this.customerInformationsList = this.recyclerCustomerRepository.findAllRecyclerCustomer();
   }
 
-  // Metodos
+
   @Override
   // This method is responsible for searching by ID if a customer is in the data list
   public boolean searchingId(String idSearching) {
     logger.info("Searching for a customer by id");
-    boolean result = false;
-    for (RecyclerCustomer customer : customerInformationsList) {
-      if (customer.id().equals(idSearching)) {
-        result = true;
-        break;
-      }
-    }
-    return result;
+    return customerInformationsList.stream()
+        .anyMatch(customer -> customer.id().equals(idSearching));
   }
 
   @Override
   // This method counts the number of customers by gender.
   public int countByGender(char gender) {
     logger.info("Counting customers by gender");
-    var count =
+    return (int)
         customerInformationsList.stream()
             .filter(customer -> customer.gender() == gender) // Filter customer by gender
             .count();
-    return (int) count;
   }
 
   @Override
   // This method counts the number of customers by gender who recycle.
   public int countGenderAndRecycle(char gender, boolean recycle) {
     logger.info("Counting customers who recycle by gender");
-    var count =
-        customerInformationsList.stream() // Filter customer by gender and recycler
+    return (int)
+        customerInformationsList.stream()
             .filter(customer -> customer.gender() == gender && customer.recycle())
             .count();
-    return (int) count;
   }
 
   @Override
-  // This method counts the number of customers who recycle between 18 and 27 years old.
-  public int countYoungRecycler() {
+  public int countRecyclerByAges(int initialAge, int finalAge) {
     logger.info("Count the number of clients between 18 and 27 years old");
-    int youngRecyclers = 0;
-    for (RecyclerCustomer customer : customerInformationsList) {
-      if (customer.age() >= 18 && customer.age() <= 27 && customer.recycle()) {
-        youngRecyclers++;
-      }
-    }
-    return youngRecyclers;
+
+    return (int)
+        customerInformationsList.stream()
+            .filter(
+                customer ->
+                    customer.age() >= initialAge
+                        && customer.age() <= finalAge
+                        && customer.recycle())
+            .count();
   }
 
   @Override
@@ -84,5 +77,17 @@ public class EstadisticasCustomerImpl implements EstadisticaCustomer {
     fullName.append(name).append(" ").append(surname);
 
     return fullName;
+  }
+
+  @Override
+  public List<RecyclerCustomer> listAllCustomers() {
+    logger.info("Showing all customers");
+    return this.recyclerCustomerRepository.findAllRecyclerCustomer();
+  }
+
+  @Override
+  public RecyclerCustomer addRecyclerCustomer(RecyclerCustomer newRecycler) {
+    logger.info("Adding a new recycler Customer");
+    return this.recyclerCustomerRepository.addRecyclerCustomer(newRecycler);
   }
 }
