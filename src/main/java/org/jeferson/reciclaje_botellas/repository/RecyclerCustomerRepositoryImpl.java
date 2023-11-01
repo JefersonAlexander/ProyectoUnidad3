@@ -1,4 +1,4 @@
-package org.jeferson.reciclaje_botellas.domain.repository;
+package org.jeferson.reciclaje_botellas.repository;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -11,8 +11,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-import org.jeferson.reciclaje_botellas.domain.model.RecyclerCustomer;
-import org.jeferson.reciclaje_botellas.domain.service.StatisticsCustomerImpl;
+import org.jeferson.reciclaje_botellas.model.RecyclerCustomer;
+import org.jeferson.reciclaje_botellas.service.StatisticsCustomerImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

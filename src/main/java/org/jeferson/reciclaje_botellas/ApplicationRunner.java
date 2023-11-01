@@ -3,10 +3,12 @@ package org.jeferson.reciclaje_botellas;
 import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.List;
-import org.jeferson.reciclaje_botellas.domain.model.RecyclerCustomer;
-import org.jeferson.reciclaje_botellas.domain.repository.RecyclerCustomerRepositoryImpl;
-import org.jeferson.reciclaje_botellas.domain.service.StatisticsCustomer;
-import org.jeferson.reciclaje_botellas.domain.service.StatisticsCustomerImpl;
+
+import org.jeferson.reciclaje_botellas.exception.RecyclerCustomerNotFoundException;
+import org.jeferson.reciclaje_botellas.model.RecyclerCustomer;
+import org.jeferson.reciclaje_botellas.repository.RecyclerCustomerRepositoryImpl;
+import org.jeferson.reciclaje_botellas.service.StatisticsCustomer;
+import org.jeferson.reciclaje_botellas.service.StatisticsCustomerImpl;
 
 public class ApplicationRunner {
   public static void main(String[] args) {
@@ -24,6 +26,7 @@ public class ApplicationRunner {
     System.out.println(
         MessageFormat.format("Number of men: {0} ", statisticsService.countByGender('M')));
 
+
     System.out.println(
         MessageFormat.format(
             "Number of women who recycle: {0} ",
@@ -38,10 +41,14 @@ public class ApplicationRunner {
         MessageFormat.format(
             "Who recycles the bottles was: {0}  ", statisticsService.findingMostRecycler()));
 
-    System.out.println(
-        MessageFormat.format(
-            "The number of young people who recycle is: {0}  ",
-                statisticsService.countRecyclerByAges(18, 27)));
+   try {
+     System.out.println(
+             MessageFormat.format(
+                     "The number of young people who recycle is: {0}  ",
+                     statisticsService.countRecyclerByAges(0, 0)));
+   }catch (RecyclerCustomerNotFoundException e){
+     System.out.println(e);
+   }
 
     statisticsService.addRecyclerCustomer(
         new RecyclerCustomer("Laiza", "Delgado", 24, 'F', "888", true, 3, LocalDate.now()));

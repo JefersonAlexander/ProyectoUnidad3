@@ -1,8 +1,10 @@
-package org.jeferson.reciclaje_botellas.domain.service;
+package org.jeferson.reciclaje_botellas.service;
 
 import java.util.List;
-import org.jeferson.reciclaje_botellas.domain.model.RecyclerCustomer;
-import org.jeferson.reciclaje_botellas.domain.repository.RecyclerCustomerRepository;
+
+import org.jeferson.reciclaje_botellas.exception.RecyclerCustomerNotFoundException;
+import org.jeferson.reciclaje_botellas.model.RecyclerCustomer;
+import org.jeferson.reciclaje_botellas.repository.RecyclerCustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +21,7 @@ public class StatisticsCustomerImpl implements StatisticsCustomer {
 
   @Override
   // This method is responsible for searching by ID if a customer is in the data list
-  public boolean searchingId(String idSearching) {
+  public boolean searchingId(String idSearching)  {
     logger.info("Searching for a customer by id");
     return customerInformationsList.stream()
         .anyMatch(customer -> customer.id().equals(idSearching));
@@ -27,7 +29,7 @@ public class StatisticsCustomerImpl implements StatisticsCustomer {
 
   @Override
   // This method counts the number of customers by gender.
-  public int countByGender(char gender) {
+  public int countByGender(char gender)  {
     logger.info("Counting customers by gender");
     return (int)
         customerInformationsList.stream()
@@ -46,8 +48,14 @@ public class StatisticsCustomerImpl implements StatisticsCustomer {
   }
 
   @Override
-  public int countRecyclerByAges(int initialAge, int finalAge) {
-    logger.info("Count the number of clients between 18 and 27 years old");
+  public int countRecyclerByAges(int initialAge, int finalAge) throws RecyclerCustomerNotFoundException {
+    logger.info("Count the number of clients for age ");
+    if (initialAge > finalAge || initialAge <= 0 || finalAge <= 0 ) {
+      logger.error("Can't count customers");
+      throw new RecyclerCustomerNotFoundException(initialAge,finalAge);
+    }else{
+
+    }
 
     return (int)
         customerInformationsList.stream()

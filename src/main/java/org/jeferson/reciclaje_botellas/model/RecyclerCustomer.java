@@ -1,4 +1,4 @@
-package org.jeferson.reciclaje_botellas.domain.model;
+package org.jeferson.reciclaje_botellas.model;
 
 import java.time.LocalDate;
 
