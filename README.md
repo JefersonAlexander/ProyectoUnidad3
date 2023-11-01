@@ -1,15 +1,15 @@
-# Proyecto reciclaje de botellas
+# Bottle recycling project for customers
 
-## Descripcion
+## Description
 
 This project is a solution in which chain stores or 
 supermarkets are proposed to encourage customers to recycle bottles.
 
-## Tecnologías utilizadas
+## Used technology
 
-- JDK 17: Java Records/ Interfaces
+- JDK 19: Java Records/ Interfaces
 - Maven
-- JUnit (Pruebas)
-- slf4j (Generación de mensajes y alertas)
+- JUnit (Test)
+- slf4j (Generation of messages and alerts)
 - Google Java Formatter
 - Spotify Google Formatter Plugin
