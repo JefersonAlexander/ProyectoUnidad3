@@ -2,7 +2,7 @@ package org.jeferson.reciclaje_botellas.service;
 
 import java.util.List;
 
-import org.jeferson.reciclaje_botellas.exception.RecyclerCustomerNotFoundException;
+import org.jeferson.reciclaje_botellas.exception.RecyclerCustomerNotCountException;
 import org.jeferson.reciclaje_botellas.model.RecyclerCustomer;
 import org.jeferson.reciclaje_botellas.repository.RecyclerCustomerRepository;
 import org.slf4j.Logger;
@@ -48,11 +48,11 @@ public class StatisticsCustomerImpl implements StatisticsCustomer {
   }
 
   @Override
-  public int countRecyclerByAges(int initialAge, int finalAge) throws RecyclerCustomerNotFoundException {
+  public int countRecyclerByAges(int initialAge, int finalAge) throws RecyclerCustomerNotCountException {
     logger.info("Count the number of clients for age ");
     if (initialAge > finalAge || initialAge <= 0 || finalAge <= 0 ) {
       logger.error("Can't count customers");
-      throw new RecyclerCustomerNotFoundException(initialAge,finalAge);
+      throw new RecyclerCustomerNotCountException(initialAge,finalAge);
     }else{
 
     }

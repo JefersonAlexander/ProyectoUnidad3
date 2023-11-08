@@ -2,7 +2,7 @@ package org.jeferson.reciclaje_botellas.domain.service.impl;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.jeferson.reciclaje_botellas.exception.RecyclerCustomerNotFoundException;
+import org.jeferson.reciclaje_botellas.exception.RecyclerCustomerNotCountException;
 import org.jeferson.reciclaje_botellas.repository.RecyclerCustomerRepositoryImpl;
 import org.jeferson.reciclaje_botellas.service.StatisticsCustomer;
 import org.jeferson.reciclaje_botellas.service.StatisticsCustomerImpl;
@@ -41,7 +41,7 @@ class RecyclerCustomerImplTest {
   }
 
   @Test
-  void counting_the_person_young_by_recycling_successfully() throws RecyclerCustomerNotFoundException {
+  void counting_the_person_young_by_recycling_successfully() throws RecyclerCustomerNotCountException {
     // Hay dos personas que reciclan entre 18 y 27 años
     int youngRecycler = recyclerCustomer.countRecyclerByAges(18, 27);
     assertEquals(2, youngRecycler);

@@ -4,7 +4,7 @@ import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.jeferson.reciclaje_botellas.exception.RecyclerCustomerNotFoundException;
+import org.jeferson.reciclaje_botellas.exception.RecyclerCustomerNotCountException;
 import org.jeferson.reciclaje_botellas.model.RecyclerCustomer;
 import org.jeferson.reciclaje_botellas.repository.RecyclerCustomerRepositoryImpl;
 import org.jeferson.reciclaje_botellas.service.StatisticsCustomer;
@@ -46,7 +46,7 @@ public class ApplicationRunner {
              MessageFormat.format(
                      "The number of young people who recycle is: {0}  ",
                      statisticsService.countRecyclerByAges(0, 0)));
-   }catch (RecyclerCustomerNotFoundException e){
+   }catch (RecyclerCustomerNotCountException e){
      System.out.println(e);
    }
 
