@@ -1,7 +1,6 @@
 package org.jeferson.reciclaje_botellas.service;
 
 import java.util.List;
-
 import org.jeferson.reciclaje_botellas.exception.RecyclerCustomerNotCountException;
 import org.jeferson.reciclaje_botellas.model.RecyclerCustomer;
 import org.jeferson.reciclaje_botellas.repository.RecyclerCustomerRepository;
@@ -18,10 +17,9 @@ public class StatisticsCustomerImpl implements StatisticsCustomer {
     this.customerInformationsList = this.recyclerCustomerRepository.findAllRecyclerCustomer();
   }
 
-
   @Override
   // This method is responsible for searching by ID if a customer is in the data list
-  public boolean searchingId(String idSearching)  {
+  public boolean searchingId(String idSearching) {
     logger.info("Searching for a customer by id");
     return customerInformationsList.stream()
         .anyMatch(customer -> customer.id().equals(idSearching));
@@ -29,7 +27,7 @@ public class StatisticsCustomerImpl implements StatisticsCustomer {
 
   @Override
   // This method counts the number of customers by gender.
-  public int countByGender(char gender)  {
+  public int countByGender(char gender) {
     logger.info("Counting customers by gender");
     return (int)
         customerInformationsList.stream()
@@ -48,12 +46,13 @@ public class StatisticsCustomerImpl implements StatisticsCustomer {
   }
 
   @Override
-  public int countRecyclerByAges(int initialAge, int finalAge) throws RecyclerCustomerNotCountException {
+  public int countRecyclerByAges(int initialAge, int finalAge)
+      throws RecyclerCustomerNotCountException {
     logger.info("Count the number of clients for age ");
-    if (initialAge > finalAge || initialAge <= 0 || finalAge <= 0 ) {
+    if (initialAge > finalAge || initialAge < 0 || finalAge < 0) {
       logger.error("Can't count customers");
-      throw new RecyclerCustomerNotCountException(initialAge,finalAge);
-    }else{
+      throw new RecyclerCustomerNotCountException(initialAge, finalAge);
+    } else {
 
     }
 
@@ -82,9 +81,8 @@ public class StatisticsCustomerImpl implements StatisticsCustomer {
         surname = customer.surname();
       }
     }
-    fullName.append(name).append(" ").append(surname);
 
-    return fullName;
+    return  fullName.append(name).append(" ").append(surname);
   }
 
   @Override

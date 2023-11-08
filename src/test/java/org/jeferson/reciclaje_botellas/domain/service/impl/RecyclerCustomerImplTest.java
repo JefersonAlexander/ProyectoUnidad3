@@ -13,21 +13,21 @@ class RecyclerCustomerImplTest {
       new StatisticsCustomerImpl(new RecyclerCustomerRepositoryImpl());
 
   @Test
-  void searching_for_costumer_by_id_when_client_exists()  {
+  void searching_for_costumer_by_id_when_client_exists() {
     /*El cliente con id 182 se encuentra en la lista*/
     boolean id = recyclerCustomer.searchingId("182");
     assertTrue(id);
   }
 
   @Test
-  void searching_for_costumer_by_id_when_client_no_exists()  {
+  void searching_for_costumer_by_id_when_client_no_exists() {
     /*El cliente con id 18 no existe en los datos*/
     boolean id = recyclerCustomer.searchingId("18");
     assertFalse(id);
   }
 
   @Test
-  void counting_the_number_of_women_successfully()  {
+  void counting_the_number_of_women_successfully() {
     /*Son 11 mujeres en los datos*/
     int numberWomen = recyclerCustomer.countByGender('F');
     assertEquals(11, numberWomen);
@@ -41,7 +41,8 @@ class RecyclerCustomerImplTest {
   }
 
   @Test
-  void counting_the_person_young_by_recycling_successfully() throws RecyclerCustomerNotCountException {
+  void counting_the_person_young_by_recycling_successfully()
+      throws RecyclerCustomerNotCountException {
     // Hay dos personas que reciclan entre 18 y 27 años
     int youngRecycler = recyclerCustomer.countRecyclerByAges(18, 27);
     assertEquals(2, youngRecycler);

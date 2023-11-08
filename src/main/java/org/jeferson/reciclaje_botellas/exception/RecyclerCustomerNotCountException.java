@@ -6,6 +6,8 @@ import java.text.MessageFormat;
 public class RecyclerCustomerNotCountException extends Exception {
 
   public RecyclerCustomerNotCountException(int initialAge, int finalAge) {
-    super(MessageFormat.format("The initial age: {0} or final age {1} is not valid ",initialAge,finalAge));
+    super(
+        MessageFormat.format(
+            "The initial age: {0} or final age {1} is not valid ", initialAge, finalAge));
   }
 }

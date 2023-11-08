@@ -26,13 +26,13 @@ public class RecyclerCustomerRepositoryImpl implements RecyclerCustomerRepositor
   }
 
   private List<RecyclerCustomer> loadReciclerCustomer() {
-    logger.info("Cargando los datos desde archivo");
+    logger.info("Loading data from file");
     List<String> plainTextGradeList = readFileWithReciclerCustomer();
     return plainTextGradeList.stream().map(this::buildRecyclerCustomer).toList();
   }
 
   private List<String> readFileWithReciclerCustomer() {
-    logger.info("Leyendo el archivo");
+    logger.info("Reading file");
     Path path = Paths.get("./src/main/resources/recyclerCustomer.txt");
     try (Stream<String> stream = Files.lines(path)) {
       return stream.toList();
@@ -43,7 +43,6 @@ public class RecyclerCustomerRepositoryImpl implements RecyclerCustomerRepositor
   }
 
   private RecyclerCustomer buildRecyclerCustomer(String plainTextRecyclers) {
-    logger.info("costruyendo el vector");
     String[] questionArray = plainTextRecyclers.split(",");
 
     return new RecyclerCustomer(

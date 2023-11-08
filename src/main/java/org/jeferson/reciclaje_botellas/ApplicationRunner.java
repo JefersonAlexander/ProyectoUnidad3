@@ -3,7 +3,6 @@ package org.jeferson.reciclaje_botellas;
 import java.text.MessageFormat;
 import java.time.LocalDate;
 import java.util.List;
-
 import org.jeferson.reciclaje_botellas.exception.RecyclerCustomerNotCountException;
 import org.jeferson.reciclaje_botellas.model.RecyclerCustomer;
 import org.jeferson.reciclaje_botellas.repository.RecyclerCustomerRepositoryImpl;
@@ -26,38 +25,36 @@ public class ApplicationRunner {
     System.out.println(
         MessageFormat.format("Number of men: {0} ", statisticsService.countByGender('M')));
 
-
     System.out.println(
         MessageFormat.format(
             "Number of women who recycle: {0} ",
-                statisticsService.countGenderAndRecycle('F', true)));
+            statisticsService.countGenderAndRecycle('F', true)));
 
     System.out.println(
         MessageFormat.format(
-            "Number of men who recycle: {0} ",
-                statisticsService.countGenderAndRecycle('M', true)));
+            "Number of men who recycle: {0} ", statisticsService.countGenderAndRecycle('M', true)));
 
     System.out.println(
         MessageFormat.format(
             "Who recycles the bottles was: {0}  ", statisticsService.findingMostRecycler()));
 
-   try {
-     System.out.println(
-             MessageFormat.format(
-                     "The number of young people who recycle is: {0}  ",
-                     statisticsService.countRecyclerByAges(0, 0)));
-   }catch (RecyclerCustomerNotCountException e){
-     System.out.println(e);
-   }
+    try {
+      System.out.println(
+          MessageFormat.format(
+              "The number of people who recycle is: {0}  ",
+              statisticsService.countRecyclerByAges(-1, 0)));
+    } catch (RecyclerCustomerNotCountException e) {
+      System.out.println(e);
+    }
 
     statisticsService.addRecyclerCustomer(
         new RecyclerCustomer("Laiza", "Delgado", 24, 'F', "888", true, 3, LocalDate.now()));
     System.out.println("Showing information after adding a new customer");
-    mostrarNotas(statisticsService);
+    showCustomers(statisticsService);
   }
 
-  private static void mostrarNotas(StatisticsCustomer estadisticaCustomer) {
-    List<RecyclerCustomer> gradeList = estadisticaCustomer.listAllCustomers();
+  private static void showCustomers(StatisticsCustomer statisticsCustomer) {
+    List<RecyclerCustomer> gradeList = statisticsCustomer.listAllCustomers();
     gradeList.forEach(System.out::println);
   }
 }
