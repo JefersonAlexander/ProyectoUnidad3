@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+
+        .custom-container {
+            max-width: 800px;
+            width: 100%;
+            padding: 20px;
+            box-sizing: border-box;
+            background-size: cover;
+            background-position: center;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .custom-hero {
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+
+
+        .custom-button-container {
+             margin-top: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .custom-btn-primary,
+        .custom-btn-secondary {
+            background-color:#007bff;
+            color: #ffffff;
+            border: 2px solid #000000;
+            border-radius: 8px;
+            font-size: 18px;
+            padding: 10px 20px;
+            margin-right: 10px;
+            text-decoration: none;
+        }
+
+        .custom-lead {
+            font-size: 27px;
+            margin-bottom: 20px;
+        }
+
+    </style>
+    <title>Recycler customer</title>
+</head>
+<body>
+
+<div class="container-fluid px-0">
+    <div class="px-4 py-5 my-5 text-center custom-container">
+        <div class="custom-hero">
+            <h1 class="display-5 fw-bold text-body-emphasis">Cliente reciclador</h1>
+            <p class="custom-lead mb-4">Este proyecto es una solución en la que se proponen que las tiendas o supermercados incentiven a los clientes a reciclar las botellas que compraron con pruductos.</p>
+            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center custom-button-container">
+                <a href="pages/list.html" class="btn custom-btn-primary btn-lg px-4 gap-3 mx-auto">Listar clientes</a>
+                <a href="pages/add.html" class="btn custom-btn-secondary btn-lg px-4 mx-auto">Agregar cliente</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Incluye el script de Bootstrap (Bootstrap 5 requiere Popper.js y no jQuery) -->
+<script src="https://unpkg.com/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+</body>
+</html>

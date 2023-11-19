@@ -82,7 +82,7 @@ public class StatisticsCustomerImpl implements StatisticsCustomer {
       }
     }
 
-    return  fullName.append(name).append(" ").append(surname);
+    return fullName.append(name).append(" ").append(surname);
   }
 
   @Override
