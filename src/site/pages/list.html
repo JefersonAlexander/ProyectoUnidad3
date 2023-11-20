@@ -5,107 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Bootstrap demo</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <style>
-        .custom-btn-primary,
-        .custom-btn-secondary {
-            background-color:#007bff;
-            color: #ffffff;
-            border: 2px solid #000000;
-            border-radius: 8px;
-            font-size: 18px;
-            padding: 10px 20px;
-            margin-right: 10px;
-            text-decoration: none;
-        }
+    <script src="../script/list.js"></script>
+    <link rel="stylesheet" href="../styles/list.css">
 
-        .custom-lead {
-            font-size: 27px;
-            margin-bottom: 20px;
-        }
-
-    </style>
 </head>
 
 
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
-<h2>Lista de clientes</h2>
+<div class="container">
+    <div class="d-flex align-items-center flex-column">
+        <h2>Lista de clientes</h2>
 
-<table id="table_body" class="table table-striped">
-    <thead>
-    <td>nombre</td>
-    <td>Apellido</td>
-    <td>Edad</td>
-    <td>Genero</td>
-    <td>Id</td>
-    <td>Recicla</td>
-    <td>Cantidad de botellas</td>
-    <td>Fecha</td>
-    </thead>
+        <table id="table_body" class="table table-striped">
+            <thead>
+            <td>Nombre</td>
+            <td>Apellido</td>
+            <td>Edad</td>
+            <td>Genero</td>
+            <td>Id</td>
+            <td>Recicla</td>
+            <td>Cantidad de botellas</td>
+            <td>Fecha</td>
+            </thead>
 
-</table>
+        </table>
 
-<div class="d-grid gap-2 d-sm-flex justify-content-sm-center custom-button-container">
-    <input  type="submit" class="btn custom-btn-primary btn-lg px-4 gap-3 mx-auto" value="Listar" onclick="event.preventDefault(); updateTable();">
-    <a href="add.html" class="btn custom-btn-secondary btn-lg px-4 mx-auto">Agregar cliente</a>
-    <a href="../index.html" class="btn custom-btn-secondary btn-lg px-4 mx-auto">Inicio</a>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center custom-button-container">
+            <input  type="submit" class="btn custom-btn-primary btn-lg px-4 gap-3 mx-auto" value="Listar" onclick="event.preventDefault(); updateTable();">
+            <a href="add.html" class="btn custom-btn-secondary btn-lg px-4 mx-auto">Agregar cliente</a>
+            <a href="../index.html" class="btn custom-btn-secondary btn-lg px-4 mx-auto">Inicio</a>
 
+        </div>
+    </div>
 </div>
 
 </body>
 </html>
-
-<script>
-
-    function listar(){
-        var xhttp = new XMLHttpRequest();
-        xhttp.open('GET', 'http://localhost:8080/recyclerCustomer/', true);
-
-        xhttp.onreadystatechange = function() {
-
-            if (xhttp.readyState === XMLHttpRequest.DONE) {
-                var status = xhttp.status;
-                if (status === 0 || (status >= 200 && status < 400)) {//NO hay errores
-                    var json = JSON.parse(xhttp.responseText);
-                    createTable(json);
-                } else {
-                    console.log("Error");
-                }
-            }
-        };
-        xhttp.send();
-    }
-
-
-    function createTable(json) {
-        var tableBody = document.getElementById("table_body");
-
-        var child = tableBody.childElementCount;
-        for ( let row = 1; row < child; row++ ) {
-            tableBody.deleteRow(child-row);
-        }
-
-
-
-        // Populate table
-        json.forEach((row) => {
-            var tr = document.createElement("tr");
-            Object.values(row).forEach((cell) => {
-
-                var td = document.createElement("td");
-                td.textContent = cell;
-                tr.appendChild(td);
-
-            });
-
-            tableBody.appendChild(tr);
-
-        });
-    }
-
-    function updateTable() {
-            listar();
-        }
-
-</script>

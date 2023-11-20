@@ -1,4 +1,5 @@
 package org.jeferson.reciclaje_botellas.controller;
+
 import java.util.List;
 import org.jeferson.reciclaje_botellas.model.RecyclerCustomer;
 import org.jeferson.reciclaje_botellas.repository.RecyclerCustomerRepositoryImpl;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/recyclerCustomer/")
 @CrossOrigin(origins = "*")
-
 public class RecyclerCustomerController {
   StatisticsCustomer statisticsService =
       new StatisticsCustomerImpl(new RecyclerCustomerRepositoryImpl());
@@ -25,9 +25,8 @@ public class RecyclerCustomerController {
 
   @PostMapping("/addRecycler")
   public ResponseEntity<RecyclerCustomer> addRecyclers(@RequestBody RecyclerCustomer newRecycler) {
-    System.out.println("adding grade");
+    System.out.println("adding recycler");
     RecyclerCustomer recyclerCustomer = statisticsService.addRecyclerCustomer(newRecycler);
     return ResponseEntity.status(HttpStatus.OK).body(recyclerCustomer);
   }
-
 }
